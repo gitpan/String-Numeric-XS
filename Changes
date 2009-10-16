@@ -1,3 +1,7 @@
+0.2 2009-10-16 23:45
+    - Added ppport.h
+    - Handle 'get' magic once
+
 0.1 2009-10-14 16:00
     - Initial release.
 

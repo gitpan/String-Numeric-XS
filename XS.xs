@@ -4,10 +4,8 @@
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
-
-#ifndef SvPV_const
-#  define SvPV_const(s,l) SvPV(s,l)
-#endif
+#define NEED_sv_2pv_flags
+#include "ppport.h"
 
 #define SN_INT8_MIN    "128"
 #define SN_INT8_MAX    "127"
@@ -51,7 +49,7 @@
 #endif
 
 
-#line 55 "XS.xs"
+#line 53 "XS.xs"
 static const int SN_start = 1;
 static const int SN_first_final = 27;
 static const int SN_error = 0;
@@ -72,7 +70,7 @@ static const int SN_en_is_uint64 = 26;
 static const int SN_en_is_uint128 = 1;
 
 
-#line 131 "dev/XS.rl"
+#line 129 "dev/XS.rl"
 
 
 static bool 
@@ -83,7 +81,7 @@ sn_check(const char *str, STRLEN len, int cs) {
     bool neg = FALSE;
 
     
-#line 87 "XS.xs"
+#line 85 "XS.xs"
 	{
 	if ( p == pe )
 		goto _test_eof;
@@ -104,7 +102,7 @@ st27:
 case 27:
 	goto st0;
 tr2:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -114,7 +112,7 @@ st28:
 	if ( ++p == pe )
 		goto _test_eof28;
 case 28:
-#line 118 "XS.xs"
+#line 116 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st29;
 	goto st0;
@@ -520,7 +518,7 @@ case 10:
 		goto st75;
 	goto st0;
 tr13:
-#line 104 "dev/XS.rl"
+#line 102 "dev/XS.rl"
 	{
         neg = ((*p) == '-');
     }
@@ -529,7 +527,7 @@ st11:
 	if ( ++p == pe )
 		goto _test_eof11;
 case 11:
-#line 533 "XS.xs"
+#line 531 "XS.xs"
 	if ( (*p) == 48 )
 		goto st74;
 	if ( 49 <= (*p) && (*p) <= 57 )
@@ -556,7 +554,7 @@ case 12:
 		goto tr18;
 	goto st0;
 tr16:
-#line 104 "dev/XS.rl"
+#line 102 "dev/XS.rl"
 	{
         neg = ((*p) == '-');
     }
@@ -565,7 +563,7 @@ st13:
 	if ( ++p == pe )
 		goto _test_eof13;
 case 13:
-#line 569 "XS.xs"
+#line 567 "XS.xs"
 	if ( (*p) == 48 )
 		goto st76;
 	if ( 49 <= (*p) && (*p) <= 57 )
@@ -577,7 +575,7 @@ st76:
 case 76:
 	goto st0;
 tr18:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -587,7 +585,7 @@ st77:
 	if ( ++p == pe )
 		goto _test_eof77;
 case 77:
-#line 591 "XS.xs"
+#line 589 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st78;
 	goto st0;
@@ -612,7 +610,7 @@ case 14:
 		goto tr21;
 	goto st0;
 tr19:
-#line 104 "dev/XS.rl"
+#line 102 "dev/XS.rl"
 	{
         neg = ((*p) == '-');
     }
@@ -621,7 +619,7 @@ st15:
 	if ( ++p == pe )
 		goto _test_eof15;
 case 15:
-#line 625 "XS.xs"
+#line 623 "XS.xs"
 	if ( (*p) == 48 )
 		goto st80;
 	if ( 49 <= (*p) && (*p) <= 57 )
@@ -633,7 +631,7 @@ st80:
 case 80:
 	goto st0;
 tr21:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -643,7 +641,7 @@ st81:
 	if ( ++p == pe )
 		goto _test_eof81;
 case 81:
-#line 647 "XS.xs"
+#line 645 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st82;
 	goto st0;
@@ -682,7 +680,7 @@ case 16:
 		goto tr24;
 	goto st0;
 tr22:
-#line 104 "dev/XS.rl"
+#line 102 "dev/XS.rl"
 	{
         neg = ((*p) == '-');
     }
@@ -691,7 +689,7 @@ st17:
 	if ( ++p == pe )
 		goto _test_eof17;
 case 17:
-#line 695 "XS.xs"
+#line 693 "XS.xs"
 	if ( (*p) == 48 )
 		goto st86;
 	if ( 49 <= (*p) && (*p) <= 57 )
@@ -703,7 +701,7 @@ st86:
 case 86:
 	goto st0;
 tr24:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -713,7 +711,7 @@ st87:
 	if ( ++p == pe )
 		goto _test_eof87;
 case 87:
-#line 717 "XS.xs"
+#line 715 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st88;
 	goto st0;
@@ -787,7 +785,7 @@ case 18:
 		goto tr27;
 	goto st0;
 tr25:
-#line 104 "dev/XS.rl"
+#line 102 "dev/XS.rl"
 	{
         neg = ((*p) == '-');
     }
@@ -796,7 +794,7 @@ st19:
 	if ( ++p == pe )
 		goto _test_eof19;
 case 19:
-#line 800 "XS.xs"
+#line 798 "XS.xs"
 	if ( (*p) == 48 )
 		goto st97;
 	if ( 49 <= (*p) && (*p) <= 57 )
@@ -808,7 +806,7 @@ st97:
 case 97:
 	goto st0;
 tr27:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -818,7 +816,7 @@ st98:
 	if ( ++p == pe )
 		goto _test_eof98;
 case 98:
-#line 822 "XS.xs"
+#line 820 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st99;
 	goto st0;
@@ -955,7 +953,7 @@ case 20:
 		goto tr30;
 	goto st0;
 tr28:
-#line 104 "dev/XS.rl"
+#line 102 "dev/XS.rl"
 	{
         neg = ((*p) == '-');
     }
@@ -964,7 +962,7 @@ st21:
 	if ( ++p == pe )
 		goto _test_eof21;
 case 21:
-#line 968 "XS.xs"
+#line 966 "XS.xs"
 	if ( (*p) == 48 )
 		goto st117;
 	if ( 49 <= (*p) && (*p) <= 57 )
@@ -976,7 +974,7 @@ st117:
 case 117:
 	goto st0;
 tr30:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -986,7 +984,7 @@ st118:
 	if ( ++p == pe )
 		goto _test_eof118;
 case 118:
-#line 990 "XS.xs"
+#line 988 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st119;
 	goto st0;
@@ -1284,7 +1282,7 @@ st159:
 case 159:
 	goto st0;
 tr34:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -1294,7 +1292,7 @@ st160:
 	if ( ++p == pe )
 		goto _test_eof160;
 case 160:
-#line 1298 "XS.xs"
+#line 1296 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st161;
 	goto st0;
@@ -1322,7 +1320,7 @@ st163:
 case 163:
 	goto st0;
 tr36:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -1332,7 +1330,7 @@ st164:
 	if ( ++p == pe )
 		goto _test_eof164;
 case 164:
-#line 1336 "XS.xs"
+#line 1334 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st165;
 	goto st0;
@@ -1374,7 +1372,7 @@ st169:
 case 169:
 	goto st0;
 tr38:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -1384,7 +1382,7 @@ st170:
 	if ( ++p == pe )
 		goto _test_eof170;
 case 170:
-#line 1388 "XS.xs"
+#line 1386 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st171;
 	goto st0;
@@ -1461,7 +1459,7 @@ st180:
 case 180:
 	goto st0;
 tr40:
-#line 108 "dev/XS.rl"
+#line 106 "dev/XS.rl"
 	{
         str = p;
         len = pe - p;
@@ -1471,7 +1469,7 @@ st181:
 	if ( ++p == pe )
 		goto _test_eof181;
 case 181:
-#line 1475 "XS.xs"
+#line 1473 "XS.xs"
 	if ( 48 <= (*p) && (*p) <= 57 )
 		goto st182;
 	goto st0;
@@ -1801,7 +1799,7 @@ case 200:
 	case 77: 
 	case 78: 
 	case 79: 
-#line 54 "dev/XS.rl"
+#line 52 "dev/XS.rl"
 	{
         if (len == 3)
             return memLE(str, neg ? SN_INT8_MIN : SN_INT8_MAX, 3);
@@ -1812,7 +1810,7 @@ case 200:
 	case 83: 
 	case 84: 
 	case 85: 
-#line 59 "dev/XS.rl"
+#line 57 "dev/XS.rl"
 	{
         if (len == 5)
             return memLE(str, neg ? SN_INT16_MIN : SN_INT16_MAX, 5);
@@ -1828,7 +1826,7 @@ case 200:
 	case 94: 
 	case 95: 
 	case 96: 
-#line 64 "dev/XS.rl"
+#line 62 "dev/XS.rl"
 	{
         if (len == 10)
             return memLE(str, neg ? SN_INT32_MIN : SN_INT32_MAX, 10);
@@ -1853,7 +1851,7 @@ case 200:
 	case 114: 
 	case 115: 
 	case 116: 
-#line 69 "dev/XS.rl"
+#line 67 "dev/XS.rl"
 	{
         if (len == 19)
             return memLE(str, neg ? SN_INT64_MIN : SN_INT64_MAX, 19);
@@ -1898,7 +1896,7 @@ case 200:
 	case 154: 
 	case 155: 
 	case 156: 
-#line 74 "dev/XS.rl"
+#line 72 "dev/XS.rl"
 	{
         if (len == 39)
             return memLE(str, neg ? SN_INT128_MIN : SN_INT128_MAX, 39);
@@ -1907,7 +1905,7 @@ case 200:
 	case 160: 
 	case 161: 
 	case 162: 
-#line 79 "dev/XS.rl"
+#line 77 "dev/XS.rl"
 	{
         if (len == 3)
             return memLE(str, SN_UINT8_MAX, 3);
@@ -1918,7 +1916,7 @@ case 200:
 	case 166: 
 	case 167: 
 	case 168: 
-#line 84 "dev/XS.rl"
+#line 82 "dev/XS.rl"
 	{
         if (len == 5)
             return memLE(str, SN_UINT16_MAX, 5);
@@ -1934,7 +1932,7 @@ case 200:
 	case 177: 
 	case 178: 
 	case 179: 
-#line 89 "dev/XS.rl"
+#line 87 "dev/XS.rl"
 	{
         if (len == 10)
             return memLE(str, SN_UINT32_MAX, 10);
@@ -1960,7 +1958,7 @@ case 200:
 	case 198: 
 	case 199: 
 	case 200: 
-#line 94 "dev/XS.rl"
+#line 92 "dev/XS.rl"
 	{
         if (len == 20)
             return memLE(str, SN_UINT64_MAX, 20);
@@ -2005,20 +2003,20 @@ case 200:
 	case 64: 
 	case 65: 
 	case 66: 
-#line 99 "dev/XS.rl"
+#line 97 "dev/XS.rl"
 	{
         if (len == 39)
             return memLE(str, SN_UINT128_MAX, 39);
     }
 	break;
-#line 2015 "XS.xs"
+#line 2013 "XS.xs"
 	}
 	}
 
 	_out: {}
 	}
 
-#line 141 "dev/XS.rl"
+#line 139 "dev/XS.rl"
 
     return (cs >= SN_first_final);
 }
@@ -2059,7 +2057,7 @@ is_float(string)
     if (!SvOK(string))
         XSRETURN_NO;
 
-    str = SvPVbyte(string, len);
+    str = SvPV_nomg_const(string, len);
 
     ST(0) = boolSV(sn_check(str, len, ix));
     XSRETURN(1);

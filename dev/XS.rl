@@ -2,10 +2,8 @@
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
-
-#ifndef SvPV_const
-#  define SvPV_const(s,l) SvPV(s,l)
-#endif
+#define NEED_sv_2pv_flags
+#include "ppport.h"
 
 #define SN_INT8_MIN    "128"
 #define SN_INT8_MAX    "127"
@@ -178,7 +176,7 @@ is_float(string)
     if (!SvOK(string))
         XSRETURN_NO;
 
-    str = SvPVbyte(string, len);
+    str = SvPV_nomg_const(string, len);
 
     ST(0) = boolSV(sn_check(str, len, ix));
     XSRETURN(1);
