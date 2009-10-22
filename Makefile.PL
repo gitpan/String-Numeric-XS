@@ -6,6 +6,7 @@ bugtracker      'http://rt.cpan.org/Public/Dist/Display.html?Name=String-Numeric
 test_requires   'Test::More' => '0.86';
 test_requires   'Test::Exception' => '0';
 test_requires   'String::Numeric' => '0';
+makemaker_args  INC => '-I.';
 
 requires_external_cc;
 

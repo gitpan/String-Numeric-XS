@@ -16,7 +16,7 @@ use Scalar::Util        qw[];
         'SN::XS::is_numeric' => sub { 
             String::Numeric::XS::is_numeric($string);
         },
-        'SU::looks_line_number' => sub { 
+        'SU::looks_like_number' => sub { 
             Scalar::Util::looks_like_number($string);
         }
     });
