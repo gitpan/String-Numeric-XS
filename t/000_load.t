@@ -13,3 +13,4 @@ BEGIN {
 }
 
 diag("String::Numeric $String::Numeric::VERSION, Perl $], $^X");
+
